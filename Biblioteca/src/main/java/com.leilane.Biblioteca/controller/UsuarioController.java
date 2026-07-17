@@ -1,7 +1,7 @@
 package com.leilane.Biblioteca.controller;
 
 import com.leilane.Biblioteca.model.Usuario;
-import com.leilane.Biblioteca.repository.UserRepository;
+import com.leilane.Biblioteca.repository.UsuarioRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -9,16 +9,16 @@ import org.springframework.web.server.ResponseStatusException;
 @RestController
 public class UsuarioController {
 
-    private final UserRepository userRepository;
+    private final UsuarioRepository usuarioRepository;
 
-    public UsuarioController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UsuarioController(UsuarioRepository usuarioRepository) {
+        this.usuarioRepository = usuarioRepository;
     }
 
     @GetMapping("/usuarios")
-    public Object[] registeredName() {
+    public Object[] registeredUsers() {
 
-        return registeredName();
+        return usuarioRepository.findAll().toArray();
     }
 
     @PostMapping("/addUser")
@@ -26,14 +26,15 @@ public class UsuarioController {
             @RequestBody
             Usuario userToBeAdd
     ) {
-        userRepository.save(userToBeAdd);
+        usuarioRepository.save(userToBeAdd);
         return userToBeAdd;
 
     }
 
     @DeleteMapping("/removeUser/{idToBeRemoved}")
     public void removeUser(@PathVariable int idToBeRemoved) {
-        if (userRepository.existsById(idToBeRemoved)) {
+        if (usuarioRepository.existsById(idToBeRemoved)) {
+            usuarioRepository.deleteById(idToBeRemoved);
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuáruio não existe");
         }

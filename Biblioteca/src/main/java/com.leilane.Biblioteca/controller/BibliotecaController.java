@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 
 
 @RestController
@@ -45,5 +46,11 @@ public class BibliotecaController {
         System.out.println("Livro " + idToBeRemoved + " Removido!");
 
     }
+
+    @GetMapping("/livros/title/{title}")
+    public List<Livro> findByTitle(@PathVariable String title) {
+        return livroRepository.findByTitleContainingIgnoreCase(title);
+    }
+
 
 }

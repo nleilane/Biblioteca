@@ -1,0 +1,23 @@
+# Biblioteca
+
+Projeto Backend para cadastro e aluguel de livros.
+
+# Checklist
+[x] CRUD de Livros
+
+[x] CRUD de Usuários
+
+[x] Buscar por ID
+
+[x] Emprestar livro
+
+[x] Histórico de empréstimos
+
+[ ] Devolver livro
+
+[ ] Buscar por título
+
+[ ] Buscar por autor
+
+[ ] Buscar por gênero
+

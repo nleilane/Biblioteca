@@ -1,16 +1,22 @@
 package com.leilane.Biblioteca.model;
 
+import jakarta.persistence.*;
+
+import java.util.Date;
+
+@Entity
 public class Emprestimo {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String book;
-    private String user;
-    private int loanDate;
-    private int dueDate;
-    private int returnDate;
-    private boolean returned;
-    private boolean fine;
-    private int renewalCount;
-    private String observations;
+
+    @ManyToOne
+    private Usuario usuario;
+
+    @ManyToOne
+    private Livro livro;
+    private Date dateLoan;
+    private Date dateReturn;
 
     public int getId() {
         return id;
@@ -20,75 +26,35 @@ public class Emprestimo {
         this.id = id;
     }
 
-    public String getBook() {
-        return book;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setBook(String book) {
-        this.book = book;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
-    public String getUser() {
-        return user;
+    public Livro getLivro() {
+        return livro;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setLivro(Livro livro) {
+        this.livro = livro;
     }
 
-    public int getLoanDate() {
-        return loanDate;
+    public Date getDateLoan() {
+        return dateLoan;
     }
 
-    public void setLoanDate(int loanDate) {
-        this.loanDate = loanDate;
+    public void setDateLoan(Date dateLoan) {
+        this.dateLoan = dateLoan;
     }
 
-    public int getDueDate() {
-        return dueDate;
+    public Date getDateReturn() {
+        return dateReturn;
     }
 
-    public void setDueDate(int dueDate) {
-        this.dueDate = dueDate;
-    }
-
-    public int getReturnDate() {
-        return returnDate;
-    }
-
-    public void setReturnDate(int returnDate) {
-        this.returnDate = returnDate;
-    }
-
-    public boolean isReturned() {
-        return returned;
-    }
-
-    public void setReturned(boolean returned) {
-        this.returned = returned;
-    }
-
-    public boolean isFine() {
-        return fine;
-    }
-
-    public void setFine(boolean fine) {
-        this.fine = fine;
-    }
-
-    public int getRenewalCount() {
-        return renewalCount;
-    }
-
-    public void setRenewalCount(int renewalCount) {
-        this.renewalCount = renewalCount;
-    }
-
-    public String getObservations() {
-        return observations;
-    }
-
-    public void setObservations(String observations) {
-        this.observations = observations;
+    public void setDateReturn(Date dateReturn) {
+        this.dateReturn = dateReturn;
     }
 }
