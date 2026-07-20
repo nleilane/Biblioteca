@@ -1,6 +1,6 @@
 # Biblioteca
 
-Projeto Backend para cadastro e aluguel de livros.
+Projeto Backend para cadastro e empréstimo de livros.
 
 # Checklist
 [x] CRUD de Livros
