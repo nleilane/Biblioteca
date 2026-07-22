@@ -13,7 +13,7 @@ Projeto Backend para cadastro e aluguel de livros.
 
 [x] Histórico de empréstimos
 
-[ ] Devolver livro
+[x] Devolver livro
 
 [ ] Buscar por título
 

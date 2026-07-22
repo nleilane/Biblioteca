@@ -31,6 +31,7 @@ public class BibliotecaController {
             @RequestBody
             Livro bookToBeAdd
     ) {
+        bookToBeAdd.setAvailable(true);
         livroRepository.save(bookToBeAdd);
         return bookToBeAdd;
 

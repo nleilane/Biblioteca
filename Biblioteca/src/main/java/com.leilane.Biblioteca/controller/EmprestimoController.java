@@ -39,15 +39,31 @@ public class EmprestimoController{
     ){
         Usuario usuario = usuarioRepository.findById(idUser).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado.") );
         Livro livro = livroRepository.findById(idBook).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Livro não encontrado.") );
+            if(!livro.isAvailable()){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "O Livro já está emprestado.");
+        }
+        livro.setAvailable(false);
+        livroRepository.save(livro);
         Emprestimo emprestimo = new Emprestimo();
         emprestimo.setLivro(livro);
         emprestimo.setUsuario(usuario);
         emprestimo.setDateLoan(new Date());
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DAY_OF_MONTH,7);
-        emprestimo.setDateReturn(calendar.getTime());
+        emprestimo.setDateExpectedReturn(calendar.getTime());
         emprestimoRepository.save(emprestimo);
 
+        return emprestimo;
+    }
+
+    @PostMapping("/returnLoan/{idLoan}")
+        public Emprestimo returnLoan(@PathVariable int idLoan){
+        Emprestimo emprestimo = emprestimoRepository.findById(idLoan).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Empréstimo não encontrado.") );
+        emprestimo.setDateReturn(new Date());
+        Livro livro = emprestimo.getLivro();
+        livro.setAvailable(true);
+        livroRepository.save(livro);
+        emprestimoRepository.save(emprestimo);
         return emprestimo;
     }
 

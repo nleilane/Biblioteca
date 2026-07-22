@@ -1,5 +1,6 @@
 package com.leilane.Biblioteca.model;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -16,7 +17,9 @@ public class Emprestimo {
     @ManyToOne
     private Livro livro;
     private Date dateLoan;
-    private Date dateReturn;
+    private Date dateExpectedReturn;
+    @Nullable
+    private Date dateReturn ;
 
     public int getId() {
         return id;
@@ -50,11 +53,20 @@ public class Emprestimo {
         this.dateLoan = dateLoan;
     }
 
+    public Date getDateExpectedReturn() {
+        return dateExpectedReturn;
+    }
+
+    public void setDateExpectedReturn(Date dateExpectedReturn) {
+        this.dateExpectedReturn = dateExpectedReturn;
+    }
+
+    @Nullable
     public Date getDateReturn() {
         return dateReturn;
     }
 
-    public void setDateReturn(Date dateReturn) {
+    public void setDateReturn(@Nullable Date dateReturn) {
         this.dateReturn = dateReturn;
     }
 }
