@@ -50,8 +50,31 @@ public class BibliotecaController {
 
     @GetMapping("/livros/title/{title}")
     public List<Livro> findByTitle(@PathVariable String title) {
-        return livroRepository.findByTitleContainingIgnoreCase(title);
+        List<Livro> livros = livroRepository.findByTitleContainingIgnoreCase(title);
+        if(livros.isEmpty()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Nenhum livro encontrado com esse título.");
+        }
+            return livros;
     }
+
+    @GetMapping("/livros/author/{author}")
+    public List<Livro> findByAuthor(@PathVariable String author){
+        List<Livro> livros = livroRepository.findByAuthorContainingIgnoreCase(author);
+        if (livros.isEmpty()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Nenhum autor encontrado com esse nome.");
+        }
+            return livros;
+    }
+
+    @GetMapping("/livros/available")
+    public List<Livro> findByAvailableTrue(){
+        List<Livro> livros = livroRepository.findByAvailableTrue();
+        if(livros.isEmpty()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Nenhum livro disponível.");
+        }
+        return livros;
+    }
+
 
 
 }

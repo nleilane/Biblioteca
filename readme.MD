@@ -15,9 +15,9 @@ Projeto Backend para cadastro e empréstimo de livros.
 
 [x] Devolver livro
 
-[ ] Buscar por título
+[x] Buscar por título
 
-[ ] Buscar por autor
+[x] Buscar por autor
 
 [ ] Buscar por gênero
 
