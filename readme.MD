@@ -19,5 +19,6 @@ Projeto Backend para cadastro e empréstimo de livros.
 
 [x] Buscar por autor
 
-[ ] Buscar por gênero
+[x] Buscar por gênero
 
+[x] Não permitir a exclusão de um livro emprestado
